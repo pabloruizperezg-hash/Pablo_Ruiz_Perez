@@ -1,10 +1,12 @@
 Package: PabloRuizPerez
-Title: Filtrado por media y desviacion 
+Title: Filtrado de Data.Frame's
 Version: 0.0.0.9000
 Authors@R: 
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: No se aún
+Description: Función de filtrado por media, mediana y desviación típica de columnas de un df. Obteniendo listas con los diferentes df solicitados.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Imports: 
+    dplyr

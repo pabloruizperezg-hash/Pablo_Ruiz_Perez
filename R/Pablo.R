@@ -71,6 +71,3 @@ filtrar_df_col <- function(df, nombre_columna, filtro = "todos", eliminar_NA = T
     return(df_NA |> dplyr::filter(.data[[nombre_columna]] < (media - (x * desv_tipica)) |
                                     .data[[nombre_columna]] > (media + (x * desv_tipica))))
 }}
-
-
-

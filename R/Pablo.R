@@ -1,3 +1,4 @@
+
 #' Data.Frame Filters
 #'
 #' \code{filtrar_df_col} permite filtrar un dataframe basado en estadísticas descriptivas
@@ -23,8 +24,7 @@
 #' @importFrom rlang .data
 #' @export
 filtrar_df_col <- function(df, nombre_columna, filtro = "todos", eliminar_NA = TRUE, x = 2) {
-
-  #Checks
+#Checks
   if (!inherits(df, "data.frame")) {
     stop("`df`: este archivo debe ser un data.frame")
   }
@@ -35,7 +35,7 @@ filtrar_df_col <- function(df, nombre_columna, filtro = "todos", eliminar_NA = T
     stop("La columna elegida debe ser numerica")
   }
 
-  #NA Filter
+#NA Filter
   if(eliminar_NA) {
     df_NA <- df |>
       dplyr::filter(!is.na(.data[[nombre_columna]]))
@@ -43,8 +43,8 @@ filtrar_df_col <- function(df, nombre_columna, filtro = "todos", eliminar_NA = T
     df_NA <- df
   }
 
-  #Statistics
-  # prefix stats:: to avoid any conflict
+#Statistics
+# prefix stats:: to avoid any conflict
   media        <- mean(df_NA[[nombre_columna]], na.rm = TRUE)
   mediana      <- stats::median(df_NA[[nombre_columna]], na.rm = TRUE)
   desv_tipica  <- stats::sd(df_NA[[nombre_columna]], na.rm = TRUE)
@@ -70,20 +70,7 @@ filtrar_df_col <- function(df, nombre_columna, filtro = "todos", eliminar_NA = T
   } else if (filtro == "atipicos") {
     return(df_NA |> dplyr::filter(.data[[nombre_columna]] < (media - (x * desv_tipica)) |
                                     .data[[nombre_columna]] > (media + (x * desv_tipica))))
+}}
 
-  } else {
-    # Default case: "todos" returns a list
-    return(list(
-      sin_nulos     = df_NA,
-      mayor_media   = df_NA |> dplyr::filter(.data[[nombre_columna]] > media),
-      menor_media   = df_NA |> dplyr::filter(.data[[nombre_columna]] < media),
-      mayor_mediana = df_NA |> dplyr::filter(.data[[nombre_columna]] > mediana),
-      menor_mediana = df_NA |> dplyr::filter(.data[[nombre_columna]] < mediana),
-      rango_normal  = df_NA |> dplyr::filter(.data[[nombre_columna]] >= (media - desv_tipica) &
-                                               .data[[nombre_columna]] <= (media + desv_tipica)),
-      atipicos      = df_NA |> dplyr::filter(.data[[nombre_columna]] < (media - (x * desv_tipica)) |
-                                               .data[[nombre_columna]] > (media + (x * desv_tipica)))
-    ))
-  }
-}
+
 

@@ -1,12 +1,14 @@
-Package: PabloRuizPerez
-Title: Filtrado de Data.Frame's
+Package: filterDFCol
+Title: Filtrado de columnas de Data.Frame's
 Version: 0.0.0.9000
 Authors@R: 
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: Función de filtrado por media, mediana y desviación típica de columnas de un df. Obteniendo listas con los diferentes df solicitados.
+Description: Función de filtrado por media, mediana,desviación típica y atípicos de columnas de un df. Obteniendo listas con los diferentes df solicitados.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
-    dplyr
+    dplyr,
+    stats,
+    rlang

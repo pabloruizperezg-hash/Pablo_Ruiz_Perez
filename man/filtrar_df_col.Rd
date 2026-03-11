@@ -4,29 +4,31 @@
 \alias{filtrar_df_col}
 \title{Data.Frame Filters}
 \usage{
-filtrar_df_col(df, nombre_columna, eliminar_NA = TRUE, filtro = "todos", x = 2)
+filtrar_df_col(df, nombre_columna, filtro = "todos", eliminar_NA = TRUE, x = 2)
 }
 \arguments{
-\item{df}{Un objeto de la clase data.frame}
+\item{df}{Un objeto de la clase \code{data.frame}}
 
-\item{nombre_columna}{nombre de la columna que se desea filtrar}
+\item{nombre_columna}{Nombre de la columna que se desea filtrar}
 
-\item{eliminar_NA}{Parametro que controla la eliminacion o no de NA, existe la posibilidad de modificar si son NULL, -9999.99, etc.}
+\item{filtro}{Tipo de filtro que queremos aplicar. Opciones: "mayor_media",
+"menor_media", "mayor_mediana", "menor_mediana", "rango_normal", "atipicos" o "todos".}
 
-\item{filtro}{tipo de filtro que queremos aplicar. Existiendo las siguientes posibilidades: mayor_media, menor_media, mayor_mediana, menor_mediana, rango_normal y atipicos}
+\item{eliminar_NA}{Booleano que controla la eliminacion o no de NA (na.rm)}
 
-\item{x}{establecimiento del valor numerico por el que se multiplica a las deviacion tipica para el calculo de valores atipicos}
+\item{x}{Valor numérico multiplicador para el cálculo de atípicos (Media +/- x*SD)}
 }
 \value{
-lista con los df solicitados en filtro
+Un data.frame filtrado o una lista si el filtro es "todos".
 }
 \description{
-\code {filtrar_df_col} filtrado por media, mediana y desviacion tipica de columnas de un df. Obteniendo listas con los diferentes df solicitados.
+\code{filtrar_df_col} permite filtrar un dataframe basado en estadísticas descriptivas
+(media, mediana, desviación típica) de una columna específica.
 }
 \examples{
 \dontrun{
-library(dplyr)
 mi.df <- data.frame(ID = 1:7, Valor = c(10, 12, NA, 15, 100, 9, NA))
 solo_atipicos <- filtrar_df_col(mi.df, "Valor", filtro = "atipicos")
 }
+
 }
